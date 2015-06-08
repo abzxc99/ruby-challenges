@@ -1,11 +1,12 @@
 class Blog
 
   attr_accessor :blog_posts
-
+# Create a hash where all blog posts will be stored
   def initialize
     @blog_posts = Hash.new{ |hsh, key| hsh[key] = [] }
   end
 
+# Create a new blog post
   def new_blog_post
     current_time = Time.now
     puts "Enter Blog post title:  "
@@ -19,8 +20,8 @@ class Blog
     user_blogpost=Blog_post.new(current_time.to_s, blog_title, blog_content, blog_author)
   end
 
+# Store new blog post in the hash blog_posts
   def store_blog_post(time, title, content, author)
-    #  {created_time: time, title: title, content: content}
     value = []
     value[0] = title
     value[1] = content 
@@ -28,7 +29,8 @@ class Blog
     blog_posts.store(time, value) 
   end 
 
-  def publish(blog_posts)                   # Blog_post.publish
+# Publish tile, time created, content of all blog entries stored in hash blog_posts 
+  def publish(blog_posts)                   
     blog_posts.each do |key, value| 
       puts ("\n Blog post title: #{value[0]} \n  Created at:  #{key} \n  #{value[1]}  \n  Author: #{value[2]}")
       
@@ -48,12 +50,7 @@ class Blog_post
   end
 end
 
-class Blog_page
-
-
-end
-
-this_blog =  Blog.new
+this_blog =  Blog.new 
 iterate = true
 while (iterate) 
   puts "Would you like to create a new blog post? Y/N "
